@@ -39,10 +39,12 @@ class AppointmentController extends Controller
 
     public function show(Appointment $appointment)
     {
+        $user = \Auth::user()->id;
         $selected_id = $appointment->id;
         $appointments = Appointment::where('appointments.id', $selected_id)
             ->join('users', 'users.id', '=', 'appointments.user_id')
             ->join('pets', 'pets.id', '=', 'appointments.pet_id')
+            ->where('appointments.user_id', $user)
             ->get();
         return view('single-appointment', compact('appointments'));
     }

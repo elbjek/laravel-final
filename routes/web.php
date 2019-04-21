@@ -11,15 +11,15 @@
 |
 */
 //
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 Auth::routes();
 Route::resource('appointments', 'AppointmentController');
-Route::resource('pets', 'PetController');
 Route::resource('clients','ClientController');
+Route::resource('pets', 'PetController');
 
 
 

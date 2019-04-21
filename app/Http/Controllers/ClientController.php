@@ -16,7 +16,7 @@ class ClientController extends Controller
 
     public function index() {
 
-        $user = \Auth::user()->id;
+//        $user = \Auth::user()->id;
         $clients= Client::get();
             return view('clients', compact('clients'));
 
@@ -41,21 +41,20 @@ class ClientController extends Controller
 
     public function edit(Client $client)
     {
-//        dd($appointment);
         return view ('edit-client', compact('client'));
     }
-//
+
     public function update (Request $request, Client $client)
     {
         $id = $client->id;
         $client->update($request->all());
         return redirect('/clients/'.$id);
     }
-//
-//    public function destroy(Appointment $appointment)
-//    {
-//
-//        $appointment->delete();
-//        return view('appointments')->with('success', 'Deleted succesfully!');
-//    }
+
+    public function destroy(Client $client)
+    {
+
+        $client->delete();
+        return view('clients')->with('success', 'Deleted succesfully!');
+    }
 }
