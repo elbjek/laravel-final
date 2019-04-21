@@ -25,8 +25,11 @@ class AppointmentController extends Controller
             ->orderby('title')
             ->get();
 
-//        dd($appointments);
-        return view('appointments', compact('appointments', 'pets'));
+        if(sizeof($appointments) > 0){
+            return view('appointments', compact('appointments'));
+        } else{
+            print "You dont have any appointments";
+        }
     }
 
     public function create()

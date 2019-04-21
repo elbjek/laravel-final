@@ -9,7 +9,7 @@ $factory->define(App\Client::class, function (Faker $faker) {
     return [
         'first_name' => $faker->name,
         'last_name' => $faker->lastName,
-        'username' => $faker->userName,
+//        'username' => $faker->userName,
         'email' => $faker->freeEmail,
         'phone_number' => $faker->phoneNumber
     ];

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-    protected $fillable = ['first_name', 'last_name', 'username', 'email', 'phone_number'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'phone_number'];
 
 //    public function groomers() {
 //
