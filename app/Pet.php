@@ -10,7 +10,7 @@ class Pet extends Model
 
     public function clients()
     {
-        return $this->hasOne(App\Client::class);
+        return $this->belongsTo(App\Client::class);
     }
     public function appointments()
     {

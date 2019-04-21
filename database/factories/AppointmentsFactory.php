@@ -8,9 +8,10 @@ use Faker\Generator as Faker;
 $factory->define(App\Appointment::class, function (Faker $faker) {
 
             return [
-                'title' => $faker -> word(),
-                'description' => $faker -> sentence( 6,true),
-                'pet_id' => $faker->numberBetween(1, 20)
+                'title' => $faker->word(),
+                'description' => $faker->sentence( 6,true),
+                'pet_id' => $faker->numberBetween(1, 20),
+                'user_id' => $faker->numberBetween(1,20)
             ];
 
 });

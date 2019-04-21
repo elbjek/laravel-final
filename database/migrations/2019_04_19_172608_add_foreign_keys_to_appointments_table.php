@@ -14,6 +14,7 @@ class AddForeignKeysToAppointmentsTable extends Migration
     public function up()
     {
         Schema::table('appointments', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');
         });
     }
@@ -26,6 +27,7 @@ class AddForeignKeysToAppointmentsTable extends Migration
     public function down()
     {
         Schema::table('appointments', function (Blueprint $table) {
+            $table->dropForeign('user_id');
             $table->dropForeign('pet_id');
         });
     }

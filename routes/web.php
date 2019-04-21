@@ -18,7 +18,7 @@
 
 Auth::routes();
 Route::resource('appointments', 'AppointmentController');
-
+Route::resource('pets', 'PetController');
 Route::resource('clients','ClientController');
 
 
