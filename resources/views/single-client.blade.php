@@ -16,8 +16,8 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-                            <p>Pet:{{$client->first_name}}</p>
-                            <p>Owner:{{$client->last_name}}</p>
+                            <p>First name:{{$client->first_name}}</p>
+                            <p>Last name:{{$client->last_name}}</p>
                             <p>{{$client->phone_number}}</p>
 
                         </div>

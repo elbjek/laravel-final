@@ -39,18 +39,18 @@ class ClientController extends Controller
         return redirect('/clients');
     }
 
-//    public function edit(Appointment $appointment)
-//    {
-////        dd($appointment);
-//        return view ('edit-appointment', compact('appointment'));
-//    }
+    public function edit(Client $client)
+    {
+//        dd($appointment);
+        return view ('edit-client', compact('client'));
+    }
 //
-//    public function update (Request $request, Appointment $appointment)
-//    {
-//        $id = $appointment->id;
-//        $appointment->update($request->all());
-//        return redirect('/appointments/'.$id);
-//    }
+    public function update (Request $request, Client $client)
+    {
+        $id = $client->id;
+        $client->update($request->all());
+        return redirect('/clients/'.$id);
+    }
 //
 //    public function destroy(Appointment $appointment)
 //    {
