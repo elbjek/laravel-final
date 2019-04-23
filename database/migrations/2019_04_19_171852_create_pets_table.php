@@ -19,7 +19,6 @@ class CreatePetsTable extends Migration
 //            $table->enum('gender', ['male', 'female']);
 //            $table->enum('size', ['small', 'medium', 'large']);
             $table->string('weight');
-            $table->integer('client_id')->unsigned();
             $table->timestamps();
         });
     }

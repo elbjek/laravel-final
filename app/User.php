@@ -34,10 +34,20 @@ class User extends Authenticatable
      *
      * @var array
      */
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
     public function appointments() {
-        return $this->hasMany(\App\Appointment::class);
+
+        return $this->belongsTo(\App\Appointment::class);
+
+    }
+
+    public function clients() {
+
+        return $this->belongsTO(\App\Client::class);
+
     }
 }

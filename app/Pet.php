@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pet extends Model
 {
-    protected $fillable = ['name', 'gender', 'size', 'weight', 'client_id'];
+    protected $fillable = ['name', 'gender', 'size', 'weight'];
 
     public function clients()
     {
@@ -14,6 +14,6 @@ class Pet extends Model
     }
     public function appointments()
     {
-        return $this->belongsTo(App\Client::class);
+        return $this->belongsTo(App\Appointment::class);
     }
 }

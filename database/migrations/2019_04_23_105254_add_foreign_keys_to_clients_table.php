@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignKeysToAppointmentsTable extends Migration
+class AddForeignKeysToClientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class AddForeignKeysToAppointmentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('appointments', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        Schema::table('clients', function (Blueprint $table) {
             $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 
@@ -26,9 +27,10 @@ class AddForeignKeysToAppointmentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('appointments', function (Blueprint $table) {
-            $table->dropForeign('user_id');
+        Schema::table('clients', function (Blueprint $table) {
             $table->dropForeign('pet_id');
+            $table->dropForeign('user_id');
+
         });
     }
 }

@@ -37,7 +37,7 @@ class PetController extends Controller
     public function store(Request $request)
     {
         Pet::create($request->all());
-        return redirect('/welcome');
+        return view('pets');
     }
 
     public function edit(Pet $pet)

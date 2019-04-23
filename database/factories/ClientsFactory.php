@@ -7,10 +7,12 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Client::class, function (Faker $faker) {
     return [
-        'first_name' => $faker->name,
-        'last_name' => $faker->lastName,
+        'client_name' => $faker->name,
+        'client_lastname' => $faker->lastName,
 //        'username' => $faker->userName,
         'email' => $faker->freeEmail,
-        'phone_number' => $faker->phoneNumber
+        'phone_number' => $faker->phoneNumber,
+        'pet_id' => $faker->numberBetween(1,20),
+        'user_id' => $faker->numberBetween(1,20)
     ];
 });

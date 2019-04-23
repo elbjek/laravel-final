@@ -14,13 +14,14 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    {{--<example-component></example-component>--}}
+                     You are logged in!
                     @foreach ($appointments as $appointment)
                         <div style="border:1px solid black;">
-                            <p>{{$appointment->title}}</p>
-                            <p>{{$appointment->description}}</p>
-                            <p>{{$appointment->name}}</p>
+                            <p>Appointment title: {{$appointment->title}}</p>
+                            <p>Apppointment Desctiption: {{$appointment->description}}</p>
+                            <p>Client name:{{$appointment->client_name}} {{$appointment->client_lastname}}</p>
+                            <p>Pet name: {{$appointment->name}}</p>
                         </div>
                         @endforeach
                 </div>

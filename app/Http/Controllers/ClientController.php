@@ -16,8 +16,9 @@ class ClientController extends Controller
 
     public function index() {
 
-//        $user = \Auth::user()->id;
-        $clients= Client::get();
+        $user = \Auth::user()->id;
+        $clients= Client::where('clients.user_id', $user)->get();
+
             return view('clients', compact('clients'));
 
     }
@@ -30,6 +31,10 @@ class ClientController extends Controller
     public function show(Client $client)
     {
 
+//        $selected_id = $client->id;
+//
+//        $client = Client::where('client.id', $selected_id);
+//        dd($client);
         return view('single-client', compact('client'));
     }
 

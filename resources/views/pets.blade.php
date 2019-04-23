@@ -16,7 +16,7 @@
                         @endif
 
                         You are logged in!
-                        @foreach (#pets as $pet)
+                        @foreach ($pets as $pet)
                             <div style="border:1px solid black;">
                                 <p>{{$pet->name}}</p>
                                 <p>{{$pet->weight}}</p>

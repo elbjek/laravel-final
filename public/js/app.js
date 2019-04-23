@@ -1780,8 +1780,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      'appointments': []
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("i work");
+    this.fetchSongs(); // Echo.channel('notifications')
+    //     .listen("SongSavedEvent", (e) => {
+    //         this.fetchSongs();
+    //     });
+  },
+  methods: {
+    fetchSongs: function fetchSongs() {
+      var _this = this;
+
+      axios.get('/api/appointments').then(function (response) {
+        _this.appointments = response.data;
+        console.log(_this.appointments);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
   }
 });
 
@@ -37076,32 +37097,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
+  return _c(
+    "div",
+    [
+      _c("h1", [_vm._v("All Appointments")]),
+      _vm._v(" "),
+      _vm._l(_vm.appointments, function(appointment) {
+        return _c("div", { key: appointment.id }, [
+          _c("p", [
+            _vm._v(
+              "\n            Title:\n            " +
+                _vm._s(appointment.title) +
+                "\n        "
+            )
+          ]),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "" } }, [_vm._v("Description")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n            " + _vm._s(appointment.description) + "\n        "
+            )
           ])
         ])
-      ])
-    ])
-  }
-]
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49427,8 +49451,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/groomer-app/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/groomer-app/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-final/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel-final/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

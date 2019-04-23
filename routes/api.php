@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::get('/appointments','ApiController@index');
 //Route::middleware('auth:api')->get('/appointments','AppointmentController@index');
 //Route::middleware('auth:api')->get('/appointments/create','AppointmentController@create');
 

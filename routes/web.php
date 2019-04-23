@@ -24,6 +24,4 @@ Route::resource('pets', 'PetController');
 
 
 
-//Route::get('/', 'AppointmentController@index')->name('home');
-//Route::get('/appointment/create', 'AppointmentController@create')->name('create');
-//Route::get('/appointment/create', 'AppointmentController@create')->name('create');
+Route::get('/appointments', 'AppointmentController@index')->name('home');

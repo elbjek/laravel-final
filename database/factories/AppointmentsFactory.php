@@ -11,6 +11,7 @@ $factory->define(App\Appointment::class, function (Faker $faker) {
                 'title' => $faker->word(),
                 'description' => $faker->sentence( 6,true),
                 'pet_id' => $faker->numberBetween(1, 20),
+                'client_id' => $faker->numberBetween(1,20),
                 'user_id' => $faker->numberBetween(1,20)
             ];
 

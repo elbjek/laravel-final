@@ -6,6 +6,7 @@ use function foo\func;
 use Illuminate\Http\Request;
 use App\Appointment;
 use App\Pet;
+use App\Client;
 use Illuminate\Support\Facades\App;
 
 class AppointmentController extends Controller
@@ -18,35 +19,18 @@ class AppointmentController extends Controller
     public function index() {
 
         $user = \Auth::user()->id;
-        $appointments = Appointment::join('pets', 'pets.id', '=', 'appointments.pet_id')
-            ->join('clients', 'pets.client_id', '=', 'clients.id')
+        $appointments = Appointment::join ('pets', 'pets.id', '=', 'appointments.pet_id')
             ->join('users', 'users.id', '=', 'appointments.user_id')
-            ->where('appointments.user_id', $user)
-            ->orderby('title')
+            ->join('clients', 'clients.id', 'appointments.client_id')
+            ->where('users.id', $user)
             ->get();
-
-        if(sizeof($appointments) > 0){
             return view('appointments', compact('appointments'));
-        } else{
-            print "You dont have any appointments";
-        }
     }
 
     public function create()
     {
         return view('create-appointment');
-    }
 
-    public function show(Appointment $appointment)
-    {
-        $user = \Auth::user()->id;
-        $selected_id = $appointment->id;
-        $appointments = Appointment::where('appointments.id', $selected_id)
-            ->join('users', 'users.id', '=', 'appointments.user_id')
-            ->join('pets', 'pets.id', '=', 'appointments.pet_id')
-            ->where('appointments.user_id', $user)
-            ->get();
-        return view('single-appointment', compact('appointments'));
     }
 
     public function store(Request $request)
@@ -55,10 +39,28 @@ class AppointmentController extends Controller
         return redirect('/appointments');
     }
 
+    public function show(Appointment $appointment)
+    {
+        $user = \Auth::user()->id;
+        $selected_id = $appointment->id;
+        $appointment = Appointment::where('appointments.id', $selected_id)
+            ->join('users', 'users.id', '=', 'appointments.user_id')
+            ->join('pets', 'pets.id', '=', 'appointments.pet_id')
+            ->join('clients', 'clients.id', 'appointments.client_id')
+            ->where('appointments.user_id', $user)
+            ->first();
+        return view('single-appointment', compact('appointment'));
+    }
+
+
+
     public function edit(Appointment $appointment)
     {
-//        dd($appointment);
-        return view ('edit-appointment', compact('appointment'));
+        $user = \Auth::user()->id;
+        $pets = Pet::pluck('name','id');
+        $clients = Client::pluck('client_name','id');
+
+        return view ('edit-appointment', compact('appointment','clients', 'pets', 'user'));
     }
 
     public function update (Request $request, Appointment $appointment)

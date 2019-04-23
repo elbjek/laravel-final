@@ -18,6 +18,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->integer('pet_id')->unsigned();
+            $table->integer('client_id')->unsigned();
             $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
         });

@@ -16,6 +16,14 @@
          <label for="quantity">Pet id</label>
          <input type="number" class="form-control" name="pet_id"/>
      </div>
+     <div class="form-group">
+         <label for="quantity">Client id</label>
+         <input type="number" class="form-control" name="client_id"/>
+     </div>
+     <div class="form-group">
+         <label for="quantity">User Id</label>
+         <input type="hidden"  value="<?php \Auth::user()->id; ?>" class="form-control" name="user_id"/>
+     </div>
      <button type="submit" class="btn btn-primary">Add</button>
  </form>
 
