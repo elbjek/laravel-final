@@ -1,20 +1,22 @@
 <template>
     <div>
-        <h1>Single Appointment</h1>
-                <p>Title : {{appointment.title}}</p>
-                <p>Pet name : {{appointment.name}}</p>
+   All groomers
+            <!-- <div v-for="user in users" :key="user.id">
+                <p>Name : {{user.first_name}}</p>
+                <p>Email : {{user.email}}</p>
+            </div> -->
     </div>
 </template>
 <script>
     export default {
         data() {
             return {
-                'appointment': []
+                'users': []
             }
         },
         mounted() {
-            console.log("im here");
-            this.fetchAppointments();
+            console.log("i work");
+            this.fetchUsers();
 
             // Echo.channel('notifications')
             //     .listen("SongSavedEvent", (e) => {
@@ -23,12 +25,11 @@
         },
 
         methods: {
-            fetchAppointments() {
-                var currentPath = window.location.pathname;
-                axios.get('/api' + currentPath)
+            fetchUsers() {
+                axios.get('/api/users')
                     .then(response => {
-                        this.appointment = response.data;
-                        console.log(response.data)
+                        this.users = response.data;
+                        console.log(this.users)
                     })
                     .catch((err) => {
                         console.log(err)

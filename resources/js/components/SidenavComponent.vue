@@ -1,5 +1,17 @@
 <template>
-            <div>Im sidebar</div>
+            <div class="sidebar">
+                    <ul>
+                        <li>
+                            <a href="/pets">Home</a>
+                        </li>
+                        <li>
+                            <a href="/pets">Pets</a>
+                        </li>
+                         <li>
+                            <a href="/clients">Clients</a>
+                        </li>
+                    </ul>
+            </div>
 </template>
 
 <script>
@@ -8,6 +20,3 @@
     }
 </script>
 
-<style scoped>
-
-</style>

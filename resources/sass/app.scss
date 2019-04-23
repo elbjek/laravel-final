@@ -10,6 +10,9 @@
 
 @import 'guest-nav';
 
+// Shared
+
+@import './shared/sidebar.scss';
 
 html, body {
     background-color: #fff;

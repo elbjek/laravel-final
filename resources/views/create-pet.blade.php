@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    IM HERE HOE
 
     <form method="post" action="{{ route('pets.store') }}">
         <div class="form-group">

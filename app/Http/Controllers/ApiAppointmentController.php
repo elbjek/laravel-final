@@ -16,6 +16,7 @@ class ApiAppointmentController extends Controller
         $appointments = User::where('users.id', $user)
             ->join('appointments', 'users.id', '=', 'appointments.user_id')
             ->join('pets', 'pets.id','=', 'appointments.pet_id')
+            ->join('clients', 'clients.id','=', 'appointments.client_id')
             ->get();
         return (compact('appointments'));
     }
