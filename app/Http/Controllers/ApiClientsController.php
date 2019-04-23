@@ -18,7 +18,10 @@ class ApiClientsController extends Controller
 
     public function show() 
     {
-        $clients = Client::first();
+        $user = \Auth::id();
+        
+        $clients = Client::where('clients.user_id', $user)
+        ->first();
         return response()->json($clients);
     }
 }

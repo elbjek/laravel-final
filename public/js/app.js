@@ -1780,6 +1780,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37448,6 +37449,15 @@ var render = function() {
       _c("h1", [_vm._v("All My Appointments")]),
       _vm._v(" "),
       _c("br"),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { href: "/appointments/create" }
+        },
+        [_vm._v("Add new")]
+      ),
       _vm._v(" "),
       _vm._l(_vm.appointments, function(item) {
         return _c(

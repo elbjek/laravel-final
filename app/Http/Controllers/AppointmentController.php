@@ -37,15 +37,19 @@ class AppointmentController extends Controller
 
     public function create()
     {
-        return view('create-appointment');
+        $user = \Auth::id();
+        $pets = Pet::pluck('name','id');
+        $clients = Client::pluck('client_name','id');
+        // dd($clients);
+        return view('create-appointment', compact('pets', 'clients', 'user'));
 
     }
 
-//    public function store(Request $request)
-//    {
-//        Appointment::create($request->all());
-////        return redirect('/appointments');
-//    }
+   public function store(Request $request)
+   {
+       Appointment::create($request->all());
+       return redirect('/appointments');
+   }
 
     public function show(Appointment $appointment)
     {

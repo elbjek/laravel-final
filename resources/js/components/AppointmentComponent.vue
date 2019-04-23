@@ -2,6 +2,7 @@
     <div>
         <h1>All My Appointments</h1>
         <br>
+        <a  class="btn btn-primary" href="/appointments/create">Add new</a>
         <div v-for="item in appointments" :key="item.id" class="card" style="width: 18rem;">
         <div class="card-body" v-for="appointment in item" :key="appointment.id">
             <h5 class="card-title">Title : {{appointment.title}}</h5>
