@@ -18,6 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:api')->resource('appointments', 'ApiAppointmentController');
+Route::middleware('auth:api')->resource('pets', 'ApiPetsController');
+Route::middleware('auth:api')->resource('clients', 'ApiClientsController');
 Route::get('/', 'ApiUsersController@index');
 
 //Route::get('/appointments','AppointmentController@index');

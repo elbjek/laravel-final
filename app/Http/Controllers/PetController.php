@@ -15,10 +15,8 @@ class PetController extends Controller
 
     public function index() {
 
-//        $user = \Auth::user()->id;
         $pets= Pet::get();
         return view('pets', compact('pets'));
-
     }
 
     public function create()

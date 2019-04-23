@@ -22,9 +22,16 @@ window.Vue = require('vue');
 
 Vue.component('welcome-component', require('./components/WelcomeComponent.vue').default);
 Vue.component('sidenav-component', require('./components/SidenavComponent.vue').default);
+
 Vue.component('appointment-component', require('./components/AppointmentComponent.vue').default);
 Vue.component('single-appointment', require('./components/SingleAppointment.vue').default);
 Vue.component('create-appointment', require('./components/CreateAppointment.vue').default);
+
+Vue.component('pets-component', require('./components/PetsComponent.vue').default);
+
+
+Vue.component('clients-component', require('./components/ClientsComponent.vue').default);
+Vue.component('single-client', require('./components/SingleClient.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

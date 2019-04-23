@@ -1,14 +1,14 @@
 <template>
 <div>
-    <h2>Single Appointment</h2>
+    <h2>Single Client</h2>
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">Title:{{appointment.title}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Description:{{appointment.description}}</h6>
-            <p class="card-text">Lorem ipsum</p>
-            <p class="card-text">Client: {{appointment.client_name}}</p>
-            <a  v-bind:href="'/api/'+appointment.id+'/edit'">Edit</a>
-            <a href="/appointments" class="card-link">Back</a>
+            <h5 class="card-title">Client name:{{client.client_name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Lastname:{{client.client_lastname}}</h6>
+            <p class="card-text">{{client.phone_number}}</p>
+            <p class="card-text">Client: {{client.email}}</p>
+            <a  v-bind:href="'/api/'+client.id+'/edit'">Edit</a>
+            <a href="/clients" class="card-link">Back</a>
         </div>
     </div>
 </div>
@@ -17,20 +17,20 @@
     export default {
         data() {
             return {
-                'appointment': [],
+                'client': [],
                 'currentPath' : window.location.pathname
             }
         },
         mounted() {
 
-            this.fetchAppointment();
+            this.fetchClients();
         },
 
         methods: {
-            fetchAppointment() {
+            fetchClients() {
                 axios.get('/api' + this.currentPath)
                     .then(response => {
-                        this.appointment = response.data;
+                        this.client = response.data;
                         console.log(response.data)
                     })
                     .catch((err) => {

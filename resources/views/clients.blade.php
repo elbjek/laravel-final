@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    @foreach ($clients as $client)
-        <div style="border:1px solid black;">
-            <p>{{$client->client_name}} {{$client->client_lastname}}</p>
-            {{--<p>{{$client->name}}</p>--}}
+<div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                    <clients-component></clients-component>
+            </div>
         </div>
-    @endforeach
+    </div>
 @endsection

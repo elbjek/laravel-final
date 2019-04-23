@@ -37,8 +37,8 @@ class ApiAppointmentController extends Controller
         $user = \Auth::id();
         $selected_id = $appointment->id;
         $appointment = User::where('appointments.id', $selected_id)
-            ->where('users.id', 1)
             ->join('appointments', 'users.id', '=', 'appointments.user_id')
+            ->join('clients','clients.id','=','appointments.client_id')
             ->join('pets', 'pets.id','=', 'appointments.pet_id')
             ->first();
 
