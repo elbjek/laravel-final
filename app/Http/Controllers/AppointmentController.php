@@ -7,23 +7,31 @@ use Illuminate\Http\Request;
 use App\Appointment;
 use App\Pet;
 use App\Client;
+use App\User;
 use Illuminate\Support\Facades\App;
 
 class AppointmentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     public function index() {
 
-        $user = \Auth::user()->id;
-        $appointments = Appointment::join ('pets', 'pets.id', '=', 'appointments.pet_id')
-            ->join('users', 'users.id', '=', 'appointments.user_id')
-            ->join('clients', 'clients.id', 'appointments.client_id')
-            ->where('users.id', $user)
-            ->get();
+//        $user = \Auth::id();
+//        dd($user);
+//        $appointments = Appointment::join ('pets', 'pets.id', '=', 'appointments.pet_id')
+//            ->join('users', 'users.id', '=', 'appointments.user_id')
+//            ->join('clients', 'clients.id', 'appointments.client_id')
+//            ->where('users.id', $user)
+//            ->get();
+
+        
+        $user = \Auth::id();
+
+        $appointments = User::where('users.id', $user)
+            ->join('appointments', 'users.id', '=', 'appointments.user_id')
+            ->join('pets', 'pets.id','=', 'appointments.pet_id')
+            ->first();
+
             return view('appointments', compact('appointments'));
     }
 
@@ -33,22 +41,23 @@ class AppointmentController extends Controller
 
     }
 
-    public function store(Request $request)
-    {
-        Appointment::create($request->all());
-        return redirect('/appointments');
-    }
+//    public function store(Request $request)
+//    {
+//        Appointment::create($request->all());
+////        return redirect('/appointments');
+//    }
 
     public function show(Appointment $appointment)
     {
-        $user = \Auth::user()->id;
+        $user = \Auth::id();
         $selected_id = $appointment->id;
-        $appointment = Appointment::where('appointments.id', $selected_id)
-            ->join('users', 'users.id', '=', 'appointments.user_id')
-            ->join('pets', 'pets.id', '=', 'appointments.pet_id')
-            ->join('clients', 'clients.id', 'appointments.client_id')
-            ->where('appointments.user_id', $user)
+
+        $appointment = User::where('appointments.id', $selected_id)
+            ->where('users.id', $user)
+            ->join('appointments', 'users.id', '=', 'appointments.user_id')
+            ->join('pets', 'pets.id','=', 'appointments.pet_id')
             ->first();
+
         return view('single-appointment', compact('appointment'));
     }
 

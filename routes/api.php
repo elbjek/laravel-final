@@ -17,7 +17,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/appointments','ApiController@index');
+Route::middleware('auth:api')->resource('appointments', 'ApiAppointmentController');
+
+
+Route::post('login', 'PassportController@login');
+Route::post('register', 'PassportController@register');
+
+Route::middleware('auth:api')->group(function () {
+    Route::get('user', 'PassportController@details');
+    
+});
+
+//Route::get('/appointments','AppointmentController@index');
 //Route::middleware('auth:api')->get('/appointments','AppointmentController@index');
 //Route::middleware('auth:api')->get('/appointments/create','AppointmentController@create');
 

@@ -1,17 +1,13 @@
 <template>
     <div>
-        <h1>All Appointments</h1>
-        <div v-for="appointment in appointments" :key="appointment.id">
+        <h1>All Appointments of mine</h1>
+            <div v-for="item in appointments" :key="item.id">
+                <div v-for="appointment in item" :key="appointment.id">
+                <p>Title : {{appointment.title}}</p>
+                <p>Pet name : {{appointment.name}}</p>
 
-            <p>
-                Title:
-                {{appointment.title}}
-            </p>
-            <label for="">Description</label>
-            <p>
-                {{appointment.description}}
-            </p>
-        </div>
+                </div>
+            </div>
     </div>
 </template>
 <script>
@@ -23,7 +19,7 @@
         },
         mounted() {
             console.log("i work");
-            this.fetchSongs();
+            this.fetchAppointments();
 
             // Echo.channel('notifications')
             //     .listen("SongSavedEvent", (e) => {
@@ -32,7 +28,7 @@
         },
 
         methods: {
-            fetchSongs() {
+            fetchAppointments() {
 
                 axios.get('/api/appointments')
                     .then(response => {
