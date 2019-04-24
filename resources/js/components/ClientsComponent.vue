@@ -8,6 +8,7 @@
             <h6 class="card-subtitle mb-2 text-muted">Client lastname : {{client.client_lastname}}</h6>
             <p class="card-text">Email: {{client.email}}</p>
             <a :href="'/clients/' + client.id" class="card-link">See more</a>
+            <button class="btn btn-danger" @click.prevent="deleteItem(client.id)">Delete</button>
         </div>
     </div>
 </template>
@@ -39,6 +40,12 @@
                     .catch((err) => {
                         console.log(err)
                     })
+            },
+            deleteItem($id){
+                axios.delete('/api/clients/'+$id)
+                .then(response=>{
+                    this.clients.splice(this.clients.indexOf(this.clients.id), 1)
+                })
             }
         }
     }

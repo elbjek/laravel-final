@@ -44,7 +44,7 @@ class ApiAppointmentController extends Controller
             'user_id' => \Auth::id()
             ]);
             return redirect('/appointments');
-        }
+    }
         
         public function show(Appointment $appointment)
         {

@@ -33,6 +33,7 @@ Vue.component('pets-component', require('./components/PetsComponent.vue').defaul
 
 Vue.component('clients-component', require('./components/ClientsComponent.vue').default);
 Vue.component('single-client', require('./components/SingleClient.vue').default);
+Vue.component('create-client', require('./components/CreateClient.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

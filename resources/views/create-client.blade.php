@@ -1,27 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <form method="post" action="{{ route('clients.store') }}">
-            {{ csrf_field() }}
-        <div class="form-group">
-            <label for="name">First Name:</label>
-            <input type="text" class="form-control" name="first_name"/>
+<div class="container">
+        <div class="row">
+            <div class="col-sm">
+                    <create-client></create-client>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="price">Last name:</label>
-            <input type="text" class="form-control" name="last_name"/>
-        </div>
-        <div class="form-group">
-            <label for="quantity">E-mail</label>
-            <input type="email" class="form-control" name="email"/>
-        </div>
-        <div class="form-group">
-            <label for="quantity">Phone number</label>
-            <input type="text" class="form-control" name="phone_number"/>
-        </div>
-        <button type="submit" class="btn btn-primary">Add</button>
-    </form>
-
-
+    </div>
 @endsection

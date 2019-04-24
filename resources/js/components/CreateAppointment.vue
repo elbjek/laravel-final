@@ -32,7 +32,9 @@
             <!-- <label for="user_id">User Id</label> -->
             <input type="hidden"  class="form-control"  name="user_id" :value="userid"/>
         </div>
-        <a class="btn btn-primary" @click="formSubmit" href="/appointments" >Add</a>
+        <a class="btn btn-secondary" role="button" href="/pets/create">Add new pet</a>
+         <a class="btn btn-secondary" role="button" href="/clients/create">Add client</a>
+        <a class="btn btn-primary" @click.prevent="formSubmit" href="/appointments" >Add</a>
     </form>
 </template>
 
@@ -73,8 +75,10 @@
                     })
             },
             formSubmit() {
-                console.log(this.userid)
                 axios.post('/api/appointments/', this.fields)
+                .then(response=>{
+                    alert('yes')
+                })
                 .catch(error => {
                     if (error.response.status === 422) {
                     this.errors = error.response.data.errors || {};

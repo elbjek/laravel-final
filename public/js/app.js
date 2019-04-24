@@ -1836,6 +1836,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1859,6 +1860,13 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.log(err);
       });
+    },
+    deleteItem: function deleteItem($id) {
+      var _this2 = this;
+
+      axios["delete"]('/api/clients/' + $id).then(function (response) {
+        _this2.clients.splice(_this2.clients.indexOf(_this2.clients.id), 1);
+      });
     }
   }
 });
@@ -1874,6 +1882,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -1947,8 +1957,101 @@ __webpack_require__.r(__webpack_exports__);
     formSubmit: function formSubmit() {
       var _this2 = this;
 
+      axios.post('/api/appointments/', this.fields).then(function (response) {
+        alert('yes');
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this2.errors = error.response.data.errors || {};
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreateClient.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CreateClient.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "CreateAppointment",
+  data: function data() {
+    return {
+      pets: '',
+      userid: '',
+      fields: {},
+      errors: {}
+    };
+  },
+  mounted: function mounted() {
+    console.log("i work");
+    this.fetchData();
+  },
+  methods: {
+    addUserId: function addUserId() {},
+    fetchData: function fetchData() {
+      var _this = this;
+
+      axios.get('/api/clients/create').then(function (response) {
+        _this.pets = response.data.pets;
+        _this.userid = response.data.user;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    formSubmit: function formSubmit() {
+      var _this2 = this;
+
       console.log(this.userid);
-      axios.post('/api/appointments/', this.fields)["catch"](function (error) {
+      axios.post('/api/clients/', this.fields)["catch"](function (error) {
         if (error.response.status === 422) {
           _this2.errors = error.response.data.errors || {};
         }
@@ -37690,6 +37793,20 @@ var render = function() {
               attrs: { href: "/clients/" + client.id }
             },
             [_vm._v("See more")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.deleteItem(client.id)
+                }
+              }
+            },
+            [_vm._v("Delete")]
           )
         ])
       })
@@ -37880,9 +37997,32 @@ var render = function() {
       _c(
         "a",
         {
+          staticClass: "btn btn-secondary",
+          attrs: { role: "button", href: "/pets/create" }
+        },
+        [_vm._v("Add new pet")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { role: "button", href: "/clients/create" }
+        },
+        [_vm._v("Add client")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
           staticClass: "btn btn-primary",
           attrs: { href: "/appointments" },
-          on: { click: _vm.formSubmit }
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.formSubmit($event)
+            }
+          }
         },
         [_vm._v("Add")]
       )
@@ -37890,6 +38030,265 @@ var render = function() {
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreateClient.vue?vue&type=template&id=1950fc52&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CreateClient.vue?vue&type=template&id=1950fc52&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        attrs: { method: "POST", action: "/api/clients" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.formSubmit()
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "first_name" } }, [
+            _vm._v("First name:")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.fields.client_name,
+                expression: "fields.client_name"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "client_name" },
+            domProps: { value: _vm.fields.client_name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.fields, "client_name", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "last_name" } }, [_vm._v("Last name")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.fields.client_lastname,
+                expression: "fields.client_lastname"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "client_lastname" },
+            domProps: { value: _vm.fields.client_lastname },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.fields, "client_lastname", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.fields.email,
+                expression: "fields.email"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "email", name: "email" },
+            domProps: { value: _vm.fields.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.fields, "email", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "phone_number" } }, [
+            _vm._v("Phone number")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.fields.phone_number,
+                expression: "fields.phone_number"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "number", name: "phone_number" },
+            domProps: { value: _vm.fields.phone_number },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.fields, "phone_number", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "pet_id" } }, [_vm._v("Pet")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.fields.pet_id,
+                  expression: "fields.pet_id"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "number", name: "pet_id" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.fields,
+                    "pet_id",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            _vm._l(_vm.pets, function(name, id) {
+              return _c("option", { key: id, domProps: { value: id } }, [
+                _vm._v(" " + _vm._s(name))
+              ])
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "hidden", name: "user_id" },
+            domProps: { value: _vm.userid }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "buttons",
+            staticStyle: {
+              display: "flex",
+              "flex-direction": "row",
+              "justify-content": "space-between"
+            }
+          },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-secondary",
+                attrs: { role: "button", href: "/pets/create" }
+              },
+              [_vm._v("Add new pet")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { href: "/appointments/create" },
+                on: { click: _vm.formSubmit }
+              },
+              [_vm._v("Add")]
+            )
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticStyle: {
+          display: "flex",
+          "flex-direction": "row",
+          "justify-content": "space-between"
+        }
+      },
+      [
+        _c("h2", [_vm._v("Create Client")]),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-secondary",
+            attrs: { href: "/appointments/" }
+          },
+          [_vm._v("Back to Dashboard")]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -50510,6 +50909,7 @@ Vue.component('edit-appointment', __webpack_require__(/*! ./components/EditAppoi
 Vue.component('pets-component', __webpack_require__(/*! ./components/PetsComponent.vue */ "./resources/js/components/PetsComponent.vue")["default"]);
 Vue.component('clients-component', __webpack_require__(/*! ./components/ClientsComponent.vue */ "./resources/js/components/ClientsComponent.vue")["default"]);
 Vue.component('single-client', __webpack_require__(/*! ./components/SingleClient.vue */ "./resources/js/components/SingleClient.vue")["default"]);
+Vue.component('create-client', __webpack_require__(/*! ./components/CreateClient.vue */ "./resources/js/components/CreateClient.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -50785,6 +51185,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateAppointment_vue_vue_type_template_id_792cc0a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateAppointment_vue_vue_type_template_id_792cc0a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/CreateClient.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/CreateClient.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CreateClient_vue_vue_type_template_id_1950fc52_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateClient.vue?vue&type=template&id=1950fc52&scoped=true& */ "./resources/js/components/CreateClient.vue?vue&type=template&id=1950fc52&scoped=true&");
+/* harmony import */ var _CreateClient_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateClient.vue?vue&type=script&lang=js& */ "./resources/js/components/CreateClient.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CreateClient_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateClient_vue_vue_type_template_id_1950fc52_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CreateClient_vue_vue_type_template_id_1950fc52_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "1950fc52",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CreateClient.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/CreateClient.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/CreateClient.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateClient_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CreateClient.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreateClient.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateClient_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/CreateClient.vue?vue&type=template&id=1950fc52&scoped=true&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/CreateClient.vue?vue&type=template&id=1950fc52&scoped=true& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateClient_vue_vue_type_template_id_1950fc52_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CreateClient.vue?vue&type=template&id=1950fc52&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreateClient.vue?vue&type=template&id=1950fc52&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateClient_vue_vue_type_template_id_1950fc52_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateClient_vue_vue_type_template_id_1950fc52_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

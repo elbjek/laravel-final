@@ -1,41 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
-    {{--<sidenav-component></sidenav-component>--}}
-    {{-- <create-appointment></create-appointment> --}}
-{{-- 
-    <form method="post" action="{{ route('appointments.store') }}">
-            {{ csrf_field() }}
-            <div class="form-group">
-                <label for="title">Title:</label>
-                <input type="text" class="form-control" name="title" />
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <create-appointment></create-appointment>
             </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" class="form-control" name="description" />
-            </div>
-            <div class="form-group">
-                    <label for="pet_id">Pet</label>
-                    <select name="pet_id" id="pet_id">
-                        @foreach ($pets as $key => $value)
-                            <option value="{{$key}}" > {{$value}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            <div class="form-group">
-                    <label for="client_id">Client</label>
-                    <select name="client_id" id="client_id">
-                        @foreach ($clients as $key => $value)
-                            <option value="{{$key}}" > {{$value}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            <div class="form-group">
-                <label for="user_id">User Id</label>
-            <input type="hidden"  value="{{$user}}" class="form-control" name="user_id" />
-            </div>
-            <button type="submit" class="btn btn-primary">Add</button>
-        </form> --}}
-        <create-appointment></create-appointment>
+        </div>
+    </div>
 @endsection
