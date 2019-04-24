@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/appointments') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'GroomerApp') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -45,15 +45,6 @@
                                 </li>
                             @endif
                         @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="/appointments"> Dashboard </a>
-                        </li>
-                        <li class="nav-item">
-                                <a class="nav-link" href="/pets"> Pets </a>
-                         </li>
-                         <li class="nav-item">
-                                <a class="nav-link" href="/clients"> Clients </a>
-                         </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name }} <span class="caret"></span>

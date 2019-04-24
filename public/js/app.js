@@ -1840,6 +1840,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2345,6 +2346,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2353,10 +2356,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log("i work");
-    this.fetchPets(); // Echo.channel('notifications')
-    //     .listen("SongSavedEvent", (e) => {
-    //         this.fetchSongs();
-    //     });
+    this.fetchPets();
   },
   methods: {
     fetchPets: function fetchPets() {
@@ -2450,8 +2450,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2487,8 +2485,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
 //
 //
 //
@@ -37997,16 +37993,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "appointments" },
     [
-      _c("h1", [_vm._v("All My Clients")]),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c(
-        "a",
-        { staticClass: "btn btn-primary", attrs: { href: "/clients/create" } },
-        [_vm._v("Add new Client")]
-      ),
+      _vm._m(0),
       _vm._v(" "),
       _vm._l(_vm.clients, function(client) {
         return _c("div", { key: client.id, staticClass: "card-body" }, [
@@ -38034,7 +38023,7 @@ var render = function() {
           _c(
             "a",
             {
-              staticClass: "btn btn-secondary",
+              staticClass: "btn btn-edit",
               attrs: { href: "/clients/" + client.id + "/edit", role: "button" }
             },
             [_vm._v("Edit")]
@@ -38043,7 +38032,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-danger",
+              staticClass: "btn btn-rmv",
               on: {
                 click: function($event) {
                   $event.preventDefault()
@@ -38051,7 +38040,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Delete")]
+            [_vm._v("x")]
           )
         ])
       })
@@ -38059,7 +38048,22 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "header" }, [
+      _c("h1", [_vm._v("All Clients")]),
+      _vm._v(" "),
+      _c(
+        "a",
+        { staticClass: "btn btn-add", attrs: { href: "/clients/create" } },
+        [_vm._v("Add new")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -38297,7 +38301,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "appointments" }, [
     _vm._m(0),
     _vm._v(" "),
     _c(
@@ -38494,7 +38498,7 @@ var render = function() {
             _c(
               "a",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-add",
                 attrs: { href: "/clients" },
                 on: { click: _vm.formSubmit }
               },
@@ -38525,11 +38529,8 @@ var staticRenderFns = [
         _vm._v(" "),
         _c(
           "a",
-          {
-            staticClass: "btn btn-secondary",
-            attrs: { href: "/appointments/" }
-          },
-          [_vm._v("Back to Dashboard")]
+          { staticClass: "btn btn-secondary", attrs: { href: "/clients/" } },
+          [_vm._v("Back")]
         )
       ]
     )
@@ -38773,7 +38774,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "appointments" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("form", { attrs: { method: "POST", action: "/api/clients" } }, [
@@ -38963,7 +38964,7 @@ var render = function() {
           _c(
             "a",
             {
-              staticClass: "btn btn-primary",
+              staticClass: "btn btn-add",
               attrs: { href: "/clients" },
               on: { click: _vm.formSubmit }
             },
@@ -39035,7 +39036,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "appointments" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("form", { attrs: { method: "POST", action: "/api/pets" } }, [
@@ -39117,7 +39118,7 @@ var render = function() {
           _c(
             "a",
             {
-              staticClass: "btn btn-primary",
+              staticClass: "btn btn-add",
               attrs: { href: "/pets" },
               on: { click: _vm.formSubmit }
             },
@@ -39143,7 +39144,7 @@ var staticRenderFns = [
         }
       },
       [
-        _c("h3", [_vm._v("Edit Pet")]),
+        _c("h2", [_vm._v("Edit Pet")]),
         _vm._v(" "),
         _c(
           "a",
@@ -39180,10 +39181,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "appointments" },
     [
-      _c("h1", [_vm._v("All My Pets")]),
-      _vm._v(" "),
-      _c("br"),
+      _vm._m(0),
       _vm._v(" "),
       _vm._l(_vm.pets, function(pet) {
         return _c("div", { key: pet.id, staticClass: "card-body" }, [
@@ -39211,7 +39211,7 @@ var render = function() {
           _c(
             "a",
             {
-              staticClass: "btn btn-secondary",
+              staticClass: "btn btn-edit",
               attrs: { href: "/pets/" + pet.id + "/edit", role: "button" }
             },
             [_vm._v("Edit")]
@@ -39220,7 +39220,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-danger",
+              staticClass: "btn btn-rmv",
               on: {
                 click: function($event) {
                   $event.preventDefault()
@@ -39228,7 +39228,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Delete")]
+            [_vm._v("x")]
           )
         ])
       })
@@ -39236,7 +39236,22 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "header" }, [
+      _c("h1", [_vm._v("All My Pets")]),
+      _vm._v(" "),
+      _c(
+        "a",
+        { staticClass: "btn btn-add", attrs: { href: "/pets  /create" } },
+        [_vm._v("Add new")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -39320,33 +39335,44 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "appointments" }, [
     _c("h2", [_vm._v("Single Client")]),
     _vm._v(" "),
-    _c("div", { staticClass: "card", staticStyle: { width: "18rem" } }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("h5", { staticClass: "card-title" }, [
-          _vm._v("Client name:" + _vm._s(_vm.client.client_name))
-        ]),
-        _vm._v(" "),
-        _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-          _vm._v("Lastname:" + _vm._s(_vm.client.client_lastname))
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "card-text" }, [
-          _vm._v(_vm._s(_vm.client.phone_number))
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "card-text" }, [
-          _vm._v("Email: " + _vm._s(_vm.client.email))
-        ]),
-        _vm._v(" "),
-        _c("a", { attrs: { href: _vm.client.id + "/edit" } }, [_vm._v("Edit")]),
-        _vm._v(" "),
-        _c("a", { staticClass: "card-link", attrs: { href: "/clients" } }, [
-          _vm._v("Back")
-        ])
-      ])
+    _c("div", { staticClass: "card-body" }, [
+      _c("h5", { staticClass: "card-title" }, [
+        _vm._v("Client name:" + _vm._s(_vm.client.client_name))
+      ]),
+      _vm._v(" "),
+      _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
+        _vm._v("Lastname:" + _vm._s(_vm.client.client_lastname))
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "card-text" }, [
+        _vm._v(_vm._s(_vm.client.phone_number))
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "card-text" }, [
+        _vm._v("Email: " + _vm._s(_vm.client.email))
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-edit",
+          attrs: { href: _vm.client.id + "/edit" }
+        },
+        [_vm._v("Edit")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-secondary",
+          staticStyle: { float: "right" },
+          attrs: { href: "/clients" }
+        },
+        [_vm._v("Back")]
+      )
     ])
   ])
 }
@@ -39372,23 +39398,31 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h2", [_vm._v("Single Client")]),
+  return _c("div", { staticClass: "appointments" }, [
+    _c("h2", [_vm._v("Single Pet")]),
     _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("h5", { staticClass: "card-title" }, [
-          _vm._v("Client name:" + _vm._s(_vm.pet.name))
-        ]),
-        _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.pet.weight))]),
-        _vm._v(" "),
-        _c("a", { attrs: { href: _vm.pet.id + "/edit" } }, [_vm._v("Edit")]),
-        _vm._v(" "),
-        _c("a", { staticClass: "card-link", attrs: { href: "/pets" } }, [
-          _vm._v("Back")
-        ])
-      ])
+    _c("div", { staticClass: "card-body" }, [
+      _c("h5", { staticClass: "card-title" }, [
+        _vm._v("Pet name:" + _vm._s(_vm.pet.name))
+      ]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Weight:" + _vm._s(_vm.pet.weight))]),
+      _vm._v(" "),
+      _c(
+        "a",
+        { staticClass: "btn btn-edit", attrs: { href: _vm.pet.id + "/edit" } },
+        [_vm._v("Edit")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-secondary",
+          staticStyle: { float: "right" },
+          attrs: { href: "/pets" }
+        },
+        [_vm._v("Back")]
+      )
     ])
   ])
 }

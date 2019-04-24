@@ -1,16 +1,14 @@
 <template>
-<div>
+<div class="appointments">
     <h2>Single Client</h2>
-    <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Client name:{{client.client_name}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Lastname:{{client.client_lastname}}</h6>
             <p class="card-text">{{client.phone_number}}</p>
             <p class="card-text">Email: {{client.email}}</p>
-            <a v-bind:href="client.id+'/edit'">Edit</a>
-            <a href="/clients" class="card-link">Back</a>
+            <a v-bind:href="client.id+'/edit'" class="btn btn-edit">Edit</a>
+            <a href="/clients" style="float:right"  class="btn btn-secondary">Back</a>
         </div>
-    </div>
 </div>
 </template>
 <script>

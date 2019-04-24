@@ -10686,7 +10686,6 @@ a.text-dark:focus {
   background-color: #ffffff;
   height: 100%;
   border-top: 2px solid #f4f4f4;
-  border-right: 1px solid rgba(150, 150, 150, 0.45);
 }
 
 .sidebar ul {
@@ -10771,7 +10770,7 @@ a.text-dark:focus {
 
 .appointments form {
   background-color: white;
-  padding: 20px;
+  padding: 20px 40px 20px 20px;
   border-radius: 10px;
 }
 
@@ -10819,7 +10818,7 @@ body {
   color: white !important;
 }
 
-.bnt-edt {
+.bnt-edit {
   background-color: #3490dc;
   color: white;
   text-align: center;
@@ -10832,5 +10831,7 @@ body {
 .btn-secondary {
   border-radius: 20px;
   margin-left: 10px;
+  text-align: center;
+  align-self: center;
 }
 

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="appointments">
     <div style="display:flex; flex-direction:row; justify-content:space-between">
         <h3>Edit Client</h3>
         <a class="btn btn-secondary" href="/clients" role="button">Back</a> 
@@ -35,7 +35,7 @@
         </div>
         <div class="buttons" style="display:flex; flex-direction:row; justify-content:space-between" >
         <a class="btn btn-secondary" href="/pets/create" role="button">Create pet</a> 
-        <a class="btn btn-primary" @click="formSubmit" href="/clients">Add</a>
+        <a class="btn btn-add" @click="formSubmit" href="/clients">Add</a>
         </div>
       
 

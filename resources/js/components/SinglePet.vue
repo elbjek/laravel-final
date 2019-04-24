@@ -1,14 +1,12 @@
 <template>
-<div>
-    <h2>Single Client</h2>
-    <div class="card">
+<div class="appointments">
+    <h2>Single Pet</h2>
         <div class="card-body">
-            <h5 class="card-title">Client name:{{pet.name}}</h5>
-            <p>{{pet.weight}}</p>
-            <a v-bind:href="pet.id+'/edit'">Edit</a>
-            <a href="/pets" class="card-link">Back</a>
+            <h5 class="card-title">Pet name:{{pet.name}}</h5>
+            <p>Weight:{{pet.weight}}</p>
+            <a v-bind:href="pet.id+'/edit'" class="btn btn-edit">Edit</a>
+            <a href="/pets" class="btn btn-secondary" style="float:right">Back</a>
         </div>
-    </div>
 </div>
 </template>
 <script>

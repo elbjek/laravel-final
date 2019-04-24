@@ -1,7 +1,7 @@
 <template>
-<div>
+<div class="appointments">
     <div style="display:flex; flex-direction:row; justify-content:space-between">
-        <h3>Edit Pet</h3>
+        <h2>Edit Pet</h2>
         <a class="btn btn-secondary" href="/pets" role="button">Back</a> 
     </div>
         <form  method="POST" action="/api/pets">
@@ -17,7 +17,7 @@
             <input type="hidden" class="form-control"  name="user_id" :value="pet.user_id"/>
         </div>
         <div class="buttons" style="display:flex; flex-direction:row; justify-content:space-between" >
-        <a class="btn btn-primary" @click="formSubmit" href="/pets">Add</a>
+        <a class="btn btn-add" @click="formSubmit" href="/pets">Add</a>
         </div>
     </form>
 </div>
