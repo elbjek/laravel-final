@@ -3,8 +3,8 @@
 @section('content')
 
     <form method="post" action="{{ route('clients.store') }}">
+            {{ csrf_field() }}
         <div class="form-group">
-            @csrf
             <label for="name">First Name:</label>
             <input type="text" class="form-control" name="first_name"/>
         </div>

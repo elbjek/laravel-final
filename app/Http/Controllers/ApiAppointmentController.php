@@ -17,6 +17,7 @@ class ApiAppointmentController extends Controller
             ->join('appointments', 'users.id', '=', 'appointments.user_id')
             ->join('pets', 'pets.id','=', 'appointments.pet_id')
             ->join('clients', 'clients.id','=', 'appointments.client_id')
+            ->latest('appointments.id')
             ->get();
         return (compact('appointments'));
     }

@@ -48,7 +48,7 @@ class AppointmentController extends Controller
    public function store(Request $request)
    {
        Appointment::create($request->all());
-       return redirect('/appointments');
+       return view('appointments');
    }
 
     public function show(Appointment $appointment)

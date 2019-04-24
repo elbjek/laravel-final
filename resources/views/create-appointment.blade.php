@@ -6,6 +6,7 @@
     {{-- <create-appointment></create-appointment> --}}
 
     <form method="post" action="{{ route('appointments.store') }}">
+            {{ csrf_field() }}
             <div class="form-group">
                 <label for="title">Title:</label>
                 <input type="text" class="form-control" name="title" />
@@ -17,7 +18,6 @@
             <div class="form-group">
                     <label for="pet_id">Pet</label>
                     <select name="pet_id" id="pet_id">
-                        {{--<option value=""> Select one</option>--}}
                         @foreach ($pets as $key => $value)
                             <option value="{{$key}}" > {{$value}}</option>
                         @endforeach
@@ -26,7 +26,6 @@
             <div class="form-group">
                     <label for="client_id">Client</label>
                     <select name="client_id" id="client_id">
-                        {{--<option value=""> Select one</option>--}}
                         @foreach ($clients as $key => $value)
                             <option value="{{$key}}" > {{$value}}</option>
                         @endforeach
