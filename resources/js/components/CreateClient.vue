@@ -34,7 +34,7 @@
         </div>
     <div class="buttons" style="display:flex; flex-direction:row; justify-content:space-between" >
         <a class="btn btn-secondary" role="button" href="/pets/create">Add new pet</a>
-        <a class="btn btn-primary" @click="formSubmit" href="/appointments/create" >Add</a>
+        <a class="btn btn-primary" @click="formSubmit" href="/clients" >Add</a>
     </div>
     </form>
     </div>

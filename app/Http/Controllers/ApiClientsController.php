@@ -47,12 +47,29 @@ class ApiClientsController extends Controller
             'user_id' => \Auth::id()
             ]);  
     }
+    public function edit(Client $client)
+    {
+        $user = \Auth::user()->id;
+        $pets = Pet::pluck('name','id');
+        $selected_id = $client->id;
+        $client = Client::join ('pets', 'pets.id', '=', 'clients.pet_id')
+        ->select('clients.*','name')
+        ->where('clients.user_id', $user)
+        ->where('clients.id',$selected_id)
+        ->first();
+        return compact('client','pets', 'user');
+    }
+    public function update (Request $request, Client $client)
+    {
 
+        $id = $client->id;
+        $client->update($request->all());
+        // return redirect('/appointments/'.$id);
+    }
 
     public function destroy(Client $client)
     {
         // $appointment = Appointments::find($id);
         $client->delete();
-        
     }
 }

@@ -34,7 +34,7 @@
         </div>
         <a class="btn btn-secondary" role="button" href="/pets/create">Add new pet</a>
          <a class="btn btn-secondary" role="button" href="/clients/create">Add client</a>
-        <a class="btn btn-primary" @click.prevent="formSubmit" href="/appointments" >Add</a>
+        <a class="btn btn-primary" @click="formSubmit" href="/appointments" >Add</a>
     </form>
 </template>
 
@@ -53,10 +53,6 @@
         mounted() {
             console.log("i work");
             this.fetchData();
-            // Echo.channel('notifications')
-            //     .listen("SongSavedEvent", (e) => {
-            //         this.fetchSongs();
-            //     });
         },
         methods:{
             addUserId(){
@@ -76,9 +72,6 @@
             },
             formSubmit() {
                 axios.post('/api/appointments/', this.fields)
-                .then(response=>{
-                    alert('yes')
-                })
                 .catch(error => {
                     if (error.response.status === 422) {
                     this.errors = error.response.data.errors || {};

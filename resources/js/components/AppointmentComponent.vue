@@ -3,7 +3,7 @@
   <!-- v-for="(value,key,index) in clients" :key="`${index}-${client.id}`" :value="key"> {{client}} -->
         <h1>All My Appointments</h1>
         <br>
-        <a  class="btn btn-primary" href="/appointments/create">Add new</a>
+        <a class="btn btn-primary" href="/appointments/create">Add new</a>
             <div class="card-body" v-for="(appointment,key) in appointments" :key="key">               
                 <h5 class="card-title">Title : {{appointment.title}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Pet name : {{appointment.name}}</h6>
