@@ -1779,8 +1779,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1800,7 +1798,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/appointments').then(function (response) {
         _this.appointments = response.data;
-        console.log(_this.appointments);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -1927,9 +1924,7 @@ __webpack_require__.r(__webpack_exports__);
     //     });
   },
   methods: {
-    addUserId: function addUserId() {
-      console.log(this.fields);
-    },
+    addUserId: function addUserId() {},
     fetchData: function fetchData() {
       var _this = this;
 
@@ -1937,7 +1932,102 @@ __webpack_require__.r(__webpack_exports__);
         _this.userid = response.data.user;
         _this.pets = response.data.pets;
         _this.clients = response.data.clients;
+        console.log(_this.userid);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    formSubmit: function formSubmit() {
+      var _this2 = this;
+
+      console.log(this.userid);
+      axios.post('/api/appointments/', this.fields)["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this2.errors = error.response.data.errors || {};
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditAppointment.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EditAppointment.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "CreateAppointment",
+  data: function data() {
+    return {
+      pets: '',
+      clients: '',
+      userid: '',
+      appointment: '',
+      fields: {},
+      currentPath: window.location.pathname,
+      errors: {}
+    };
+  },
+  mounted: function mounted() {
+    console.log("i work");
+    this.fetchData(); // Echo.channel('notifications')
+    //     .listen("SongSavedEvent", (e) => {
+    //         this.fetchSongs();
+    //     });
+  },
+  methods: {
+    addUserId: function addUserId() {
+      console.log(this.fields);
+    },
+    fetchData: function fetchData() {
+      var _this = this;
+
+      axios.get('/api' + this.currentPath).then(function (response) {
+        _this.userid = response.data.user;
+        _this.pets = response.data.pets;
+        _this.clients = response.data.clients;
+        _this.appointment = response.data.appointment;
         console.log(_this.pets);
+        console.log(_this.appointment);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -1946,7 +2036,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.addUserId();
-      axios.post('/api/appointments/', this.fields)["catch"](function (error) {
+      axios.put('/api/appointments/' + this.appointment.id, this.fields).then(function (response) {
+        alert('Message sent!');
+      })["catch"](function (error) {
         if (error.response.status === 422) {
           _this2.errors = error.response.data.errors || {};
         }
@@ -37491,56 +37583,37 @@ var render = function() {
         [_vm._v("Add new")]
       ),
       _vm._v(" "),
-      _vm._l(_vm.appointments, function(item) {
-        return _c(
-          "div",
-          {
-            key: item.id,
-            staticClass: "card",
-            staticStyle: { width: "18rem" }
-          },
-          _vm._l(item, function(appointment) {
-            return _c(
-              "div",
-              { key: appointment.id, staticClass: "card-body" },
-              [
-                _c("h5", { staticClass: "card-title" }, [
-                  _vm._v("Title : " + _vm._s(appointment.title))
-                ]),
-                _vm._v(" "),
-                _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-                  _vm._v("Pet name : " + _vm._s(appointment.name))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "card-text" }, [
-                  _vm._v("Client name: " + _vm._s(appointment.client_name))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "card-text" }, [
-                  _vm._v("Description: " + _vm._s(appointment.description))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "card-text" }, [
-                  _vm._v("Time: " + _vm._s(appointment.created_at))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "card-link",
-                    attrs: { href: "/appointments/" + appointment.id }
-                  },
-                  [_vm._v("See more")]
-                ),
-                _vm._v(" "),
-                _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
-                  _vm._v("Another link")
-                ])
-              ]
-            )
-          }),
-          0
-        )
+      _vm._l(_vm.appointments, function(appointment, key) {
+        return _c("div", { key: key, staticClass: "card-body" }, [
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._v("Title : " + _vm._s(appointment.title))
+          ]),
+          _vm._v(" "),
+          _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
+            _vm._v("Pet name : " + _vm._s(appointment.name))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "card-text" }, [
+            _vm._v("Description: " + _vm._s(appointment.description))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "card-text" }, [
+            _vm._v("Time: " + _vm._s(appointment.created_at))
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "card-link",
+              attrs: { href: "/appointments/" + appointment.id }
+            },
+            [_vm._v("See more")]
+          ),
+          _vm._v(" "),
+          _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
+            _vm._v("Another link")
+          ])
+        ])
       })
     ],
     2
@@ -37775,9 +37848,213 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "hidden", name: "user_id" },
+          domProps: { value: _vm.userid }
+        })
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { href: "/appointments" },
+          on: { click: _vm.formSubmit }
+        },
+        [_vm._v("Add")]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditAppointment.vue?vue&type=template&id=4dd8b51a&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EditAppointment.vue?vue&type=template&id=4dd8b51a&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      attrs: { method: "POST", action: "/api/appointments" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.formSubmit()
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "title" } }, [_vm._v("Title:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.fields.title,
+              expression: "fields.title"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            placeholder: _vm.appointment.title,
+            name: "title"
+          },
+          domProps: { value: _vm.fields.title },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.fields, "title", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "description" } }, [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.fields.description,
+              expression: "fields.description"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            name: "description",
+            placeholder: _vm.appointment.description
+          },
+          domProps: { value: _vm.fields.description },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.fields, "description", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "pet_id" } }, [_vm._v("Pet")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.fields.pet_id,
+                expression: "fields.pet_id"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "number", name: "pet_id" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.fields,
+                  "pet_id",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          _vm._l(_vm.pets, function(value, key) {
+            return _c("option", { key: key, domProps: { value: key } }, [
+              _vm._v(" \n            " + _vm._s(value) + "\n        ")
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "client_id" } }, [_vm._v("Client id")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.fields.client_id,
+                expression: "fields.client_id"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "number", name: "client_id" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.fields,
+                  "client_id",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          _vm._l(_vm.clients, function(value, key) {
+            return _c("option", { key: key, domProps: { value: key } }, [
+              _vm._v(" " + _vm._s(value))
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
-      _vm._m(1)
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Edit")]
+      )
     ]
   )
 }
@@ -37792,16 +38069,6 @@ var staticRenderFns = [
         attrs: { type: "hidden", name: "user_id", value: "userid" }
       })
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-      [_c("a", { attrs: { href: "/appointments" } }, [_vm._v("Add")])]
-    )
   }
 ]
 render._withStripped = true
@@ -37921,7 +38188,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h2", [_vm._v("Single Appointment")]),
+    _c("h2", [_vm._v("Single Appointment Here")]),
     _vm._v(" "),
     _c("div", { staticClass: "card", staticStyle: { width: "18rem" } }, [
       _c("div", { staticClass: "card-body" }, [
@@ -37939,7 +38206,7 @@ var render = function() {
           _vm._v("Client: " + _vm._s(_vm.appointment.client_name))
         ]),
         _vm._v(" "),
-        _c("a", { attrs: { href: "/api/" + _vm.appointment.id + "/edit" } }, [
+        _c("a", { attrs: { href: _vm.appointment.id + "/edit" } }, [
           _vm._v("Edit")
         ]),
         _vm._v(" "),
@@ -50203,6 +50470,7 @@ Vue.component('sidenav-component', __webpack_require__(/*! ./components/SidenavC
 Vue.component('appointment-component', __webpack_require__(/*! ./components/AppointmentComponent.vue */ "./resources/js/components/AppointmentComponent.vue")["default"]);
 Vue.component('single-appointment', __webpack_require__(/*! ./components/SingleAppointment.vue */ "./resources/js/components/SingleAppointment.vue")["default"]);
 Vue.component('create-appointment', __webpack_require__(/*! ./components/CreateAppointment.vue */ "./resources/js/components/CreateAppointment.vue")["default"]);
+Vue.component('edit-appointment', __webpack_require__(/*! ./components/EditAppointment.vue */ "./resources/js/components/EditAppointment.vue")["default"]);
 Vue.component('pets-component', __webpack_require__(/*! ./components/PetsComponent.vue */ "./resources/js/components/PetsComponent.vue")["default"]);
 Vue.component('clients-component', __webpack_require__(/*! ./components/ClientsComponent.vue */ "./resources/js/components/ClientsComponent.vue")["default"]);
 Vue.component('single-client', __webpack_require__(/*! ./components/SingleClient.vue */ "./resources/js/components/SingleClient.vue")["default"]);
@@ -50481,6 +50749,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateAppointment_vue_vue_type_template_id_792cc0a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateAppointment_vue_vue_type_template_id_792cc0a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/EditAppointment.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/EditAppointment.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditAppointment_vue_vue_type_template_id_4dd8b51a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditAppointment.vue?vue&type=template&id=4dd8b51a&scoped=true& */ "./resources/js/components/EditAppointment.vue?vue&type=template&id=4dd8b51a&scoped=true&");
+/* harmony import */ var _EditAppointment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditAppointment.vue?vue&type=script&lang=js& */ "./resources/js/components/EditAppointment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditAppointment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditAppointment_vue_vue_type_template_id_4dd8b51a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditAppointment_vue_vue_type_template_id_4dd8b51a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "4dd8b51a",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/EditAppointment.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/EditAppointment.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/EditAppointment.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAppointment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EditAppointment.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditAppointment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAppointment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/EditAppointment.vue?vue&type=template&id=4dd8b51a&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/EditAppointment.vue?vue&type=template&id=4dd8b51a&scoped=true& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAppointment_vue_vue_type_template_id_4dd8b51a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EditAppointment.vue?vue&type=template&id=4dd8b51a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditAppointment.vue?vue&type=template&id=4dd8b51a&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAppointment_vue_vue_type_template_id_4dd8b51a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAppointment_vue_vue_type_template_id_4dd8b51a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -13,7 +13,6 @@ class Appointment extends Model
         return $this->hasMany(\App\Pet::class);
 
     }
-
     public function clients()
     {
         return $this->hasMany(\App\Client::class);

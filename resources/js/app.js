@@ -26,6 +26,7 @@ Vue.component('sidenav-component', require('./components/SidenavComponent.vue').
 Vue.component('appointment-component', require('./components/AppointmentComponent.vue').default);
 Vue.component('single-appointment', require('./components/SingleAppointment.vue').default);
 Vue.component('create-appointment', require('./components/CreateAppointment.vue').default);
+Vue.component('edit-appointment', require('./components/EditAppointment.vue').default);
 
 Vue.component('pets-component', require('./components/PetsComponent.vue').default);
 

@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
-
-    <form action="{{ route('appointments.update',$appointment->id) }}" method="POST">
+  {{-- <form action="{{ route('appointments.update',$appointment->id) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -23,7 +21,6 @@
                 <div class="form-group">
                     <label for="quantity">Pet</label>
                     <select name="pet_id" id="pet_id">
-                        {{--<option value=""> Select one</option>--}}
                         @foreach ($pets as $key => $value)
                             <option value="{{$key}}" > {{$value}}</option>
                         @endforeach
@@ -33,24 +30,17 @@
             <div class="form-group">
                 <label for="quantity">Client</label>
                 <select name="client_id" id="client_id">
-                    {{--<option value=""> Select one</option>--}}
                     @foreach ($clients as $id => $value)
                         <option value="{{$id}}" > {{$value}}</option>
                     @endforeach
                 </select>
             </div>
             </div>
-
-
-
-
-
             <input class="form-control" type="hidden" name="user_id" value="{{$user}}" placeholder="user id">
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-
-
-    </form>
+    </form> --}}
+    <edit-appointment></edit-appointment>
 @endsection
 

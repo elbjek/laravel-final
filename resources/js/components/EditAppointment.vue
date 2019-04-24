@@ -2,24 +2,19 @@
     <form @submit.prevent="formSubmit()" method="POST" action="/api/appointments">
         <div class="form-group">
             <label for="title">Title:</label>
-            <input type="text" class="form-control" name="title" v-model="fields.title"/>
+            <input type="text" class="form-control" :placeholder="appointment.title" name="title" v-model="fields.title"/>
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <input type="text" class="form-control" name="description" v-model="fields.description"/>
+            <input type="text" class="form-control" name="description" :placeholder="appointment.description" v-model="fields.description"/>
         </div>
-        <!-- <div class="form-group">
-            <label for="pet_id">Pet id</label>
-            <input type="number" class="form-control" name="pet_id" v-model="fields.pet_id"/>
-        </div> -->
-                <!-- <div class="form-group">
-            <label for="client_id">Client id</label>
-            <input type="number" class="form-control" name="client_id" v-model="fields.client_id"/>
-        </div> -->
         <div class="form-group">
             <label for="pet_id">Pet</label>
             <select type="number" class="form-control" name="pet_id" v-model="fields.pet_id" >
-            <option v-for="(name,id) in pets" :key="id" :value="id" > {{name}}</option>
+            <option 
+            v-for="(value, key) in pets" :value="key" :key="key"> 
+                {{value}}
+            </option>
             </select> 
         </div>
         <div class="form-group">
@@ -30,9 +25,9 @@
         </div>
         <div class="form-group">
             <!-- <label for="user_id">User Id</label> -->
-            <input type="hidden"  class="form-control"  name="user_id" :value="userid"/>
+            <input type="hidden"  class="form-control"  name="user_id" value="userid"/>
         </div>
-        <a class="btn btn-primary" @click="formSubmit" href="/appointments" >Add</a>
+        <button type="submit" class="btn btn-primary">Edit</button>
     </form>
 </template>
 
@@ -44,7 +39,9 @@
                 pets:'',
                 clients:'',
                 userid:'',
+                appointment:'',
                 fields:{},
+                currentPath: window.location.pathname,
                 errors:{}
             }
         },
@@ -58,23 +55,27 @@
         },
         methods:{
             addUserId(){
-                
+                console.log(this.fields)
             },
             fetchData:function () {
-                axios.get('/api/appointments/create')
+                axios.get('/api' + this.currentPath)
                     .then(response => {
                         this.userid = response.data.user;
                         this.pets = response.data.pets;
                         this.clients = response.data.clients;
-                        console.log(this.userid);
+                        this.appointment = response.data.appointment;
+                        console.log(this.pets);
+                        console.log(this.appointment)
                     })
                     .catch((err) => {
                         console.log(err)
                     })
             },
             formSubmit() {
-                console.log(this.userid)
-                axios.post('/api/appointments/', this.fields)
+                this.addUserId()
+                axios.put('/api/appointments/'+this.appointment.id, this.fields).then(response => {
+                alert('Message sent!');
+                })
                 .catch(error => {
                     if (error.response.status === 422) {
                     this.errors = error.response.data.errors || {};
