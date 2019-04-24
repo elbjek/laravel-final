@@ -27,3 +27,38 @@ html, body {
     margin:0;
     padding:0;
 }
+.btn-rmv{
+    background-color: $orange;
+    color: white;
+    text-align: center;
+    align-self: center;
+    border-radius:30px;
+    padding:5px 12px;
+    font-weight:900;
+}
+.btn-add{
+    background-color: $blue;
+    color: white;
+    text-align: center;
+    align-self: center;
+    border-radius:30px;
+    padding:8px 20px;
+    opacity: 0.9;
+    &:hover{
+        opacity:1;
+        color:white !important;
+    }
+}
+.bnt-edt{
+    background-color:$blue;
+    color: white;
+    text-align: center;
+    align-self: center;
+    border-radius:30px;
+    padding:8px 20px;
+    font-weight:900;
+}
+.btn-secondary{
+    border-radius:20px;
+    margin-left:10px;
+}

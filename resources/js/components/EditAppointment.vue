@@ -1,6 +1,6 @@
 <template>
-<div>
-    <h3>Edit</h3>
+<div class="appointments">
+    <h2>Edit Appointment</h2>
         <form @submit.prevent="formSubmit()" method="POST" action="/api/appointments">
         <div class="form-group">
             <label for="title">Title:</label>
@@ -25,12 +25,11 @@
             <option v-for="(value,key) in clients" :key="key" :value="key"> {{value}}</option>
             </select> 
         </div>
-        
         <div class="form-group">
             <input type="hidden"  class="form-control"  name="user_id" value="userid"/>
         </div>
-        <button type="submit" class="btn btn-secondary">Edit</button>
-         <a class="btn btn-primary" href="/appointments" role="button">Back</a> 
+        <button type="submit" class="btn bnt-edt">Edit</button>
+         <a class="btn btn-secondary" href="/appointments" role="button">Back</a> 
     </form>
 </div>
 </template>

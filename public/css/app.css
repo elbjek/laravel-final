@@ -10732,6 +10732,7 @@ a.text-dark:focus {
   background-color: #f4f4f4;
   padding: 20px;
   border-top: 2px solid #f4f4f4;
+  min-height: 100vh;
 }
 
 .appointments .header {
@@ -10742,15 +10743,7 @@ a.text-dark:focus {
 
 .appointments .header h1 {
   font-weight: 500;
-}
-
-.appointments .header .btn-add {
-  background-color: #f6993f;
-  color: white;
-  text-align: center;
-  align-self: center;
-  border-radius: 30px;
-  padding: 8px 20px;
+  margin-bottom: 2rem;
 }
 
 .appointments .card-body {
@@ -10762,6 +10755,28 @@ a.text-dark:focus {
 
 .appointments .card-body h3 span {
   text-transform: capitalize;
+}
+
+.appointments .card-body p {
+  margin: 10px 0px;
+}
+
+.appointments .card-body .btn-rmv {
+  float: right;
+}
+
+.appointments .card-body .card-text {
+  font-weight: 500;
+}
+
+.appointments form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.appointments form .btn-secondary {
+  float: right;
 }
 
 html,
@@ -10777,5 +10792,45 @@ body {
 .clear {
   margin: 0;
   padding: 0;
+}
+
+.btn-rmv {
+  background-color: #f6993f;
+  color: white;
+  text-align: center;
+  align-self: center;
+  border-radius: 30px;
+  padding: 5px 12px;
+  font-weight: 900;
+}
+
+.btn-add {
+  background-color: #3490dc;
+  color: white;
+  text-align: center;
+  align-self: center;
+  border-radius: 30px;
+  padding: 8px 20px;
+  opacity: 0.9;
+}
+
+.btn-add:hover {
+  opacity: 1;
+  color: white !important;
+}
+
+.bnt-edt {
+  background-color: #3490dc;
+  color: white;
+  text-align: center;
+  align-self: center;
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-weight: 900;
+}
+
+.btn-secondary {
+  border-radius: 20px;
+  margin-left: 10px;
 }
 

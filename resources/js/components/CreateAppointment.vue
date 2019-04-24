@@ -1,5 +1,7 @@
 <template>
-    <form @submit.prevent="formSubmit()" method="POST" action="/api/appointments">
+   <div class="appointments">
+       <h2>Add new Appointment</h2>
+        <form @submit.prevent="formSubmit()" method="POST" action="/api/appointments">
         <div class="form-group">
             <label for="title">Title:</label>
             <input type="text" class="form-control" name="title" v-model="fields.title"/>
@@ -8,14 +10,6 @@
             <label for="description">Description</label>
             <input type="text" class="form-control" name="description" v-model="fields.description"/>
         </div>
-        <!-- <div class="form-group">
-            <label for="pet_id">Pet id</label>
-            <input type="number" class="form-control" name="pet_id" v-model="fields.pet_id"/>
-        </div> -->
-                <!-- <div class="form-group">
-            <label for="client_id">Client id</label>
-            <input type="number" class="form-control" name="client_id" v-model="fields.client_id"/>
-        </div> -->
         <div class="form-group">
             <label for="pet_id">Pet</label>
             <select type="number" class="form-control" name="pet_id" v-model="fields.pet_id" >
@@ -34,8 +28,9 @@
         </div>
         <a class="btn btn-secondary" role="button" href="/pets/create">Add new pet</a>
          <a class="btn btn-secondary" role="button" href="/clients/create">Add client</a>
-        <a class="btn btn-primary" @click="formSubmit" href="/appointments" >Add</a>
+        <a class="btn btn-add" @click="formSubmit" href="/appointments" >Add</a>
     </form>
+   </div>
 </template>
 
 <script>

@@ -11,7 +11,7 @@
                     <p class="card-text">Description: <span>{{appointment.description}}</span></p>
                     <p class="card-text">Time: <span>{{appointment.created_at}}</span></p>
                     <a :href="'/appointments/' + appointment.id" class="card-link">See more</a>
-                <button class="btn btn-danger" @click.prevent="deleteItem(appointment.id)">Delete</button>
+                <button class="btn btn-rmv" @click.prevent="deleteItem(appointment.id)">x</button>
             </div>
            </div>
     </div>

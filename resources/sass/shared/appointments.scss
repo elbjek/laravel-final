@@ -2,20 +2,14 @@
     background-color: $background-darkwhite;
     padding:20px;
     border-top:2px solid $color-border-white;
+    min-height:100vh;
     .header{
         display:flex;
         flex-direction:row;
         justify-content: space-between;
         h1{
             font-weight: 500;
-        }
-        .btn-add{
-            background-color: #f6993f;
-            color: white;
-            text-align: center;
-            align-self: center;
-            border-radius:30px;
-            padding:8px 20px;
+            margin-bottom: 2rem;
         }
     }
     .card-body{
@@ -29,6 +23,23 @@
             span{
                 text-transform: capitalize;
             }
+        }
+        p{
+            margin:10px 0px;
+        }
+        .btn-rmv{
+            float:right;
+        }
+        .card-text{
+            font-weight: 500;
+        }
+    }
+    form{
+        background-color:white;
+        padding:20px;
+        border-radius:10px;
+        .btn-secondary{
+            float:right;
         }
     }
 }

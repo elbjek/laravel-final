@@ -1,16 +1,13 @@
 <template>
-<div>
-    <h2>Single Appointment Here</h2>
-    <div class="card">
+<div class="appointments">
+    <h2>Single Appointment</h2>
         <div class="card-body">
-            <h5 class="card-title">Title:{{appointment.title}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Description:{{appointment.description}}</h6>
-            <p class="card-text">Lorem ipsum</p>
-            <p class="card-text">Client: {{appointment.client_name}}</p>
-            <a  v-bind:href="appointment.id+'/edit'">Edit</a>
-            <a href="/appointments" class="card-link">Back</a>
+            <h3 class="card-title">Title: <span>{{appointment.title}}</span></h3>
+            <h6 class="card-subtitle mb-2 text-muted">Description: <span>{{appointment.description}}</span></h6>
+            <p class="card-text">Client: <span>{{appointment.client_name}}</span></p>
+            <a class="btn bnt-edt" v-bind:href="appointment.id+'/edit'">Edit</a>
+            <a href="/appointments" class="btn btn-secondary" style="float:right">Back</a>
         </div>
-    </div>
 </div>
 </template>
 <script>

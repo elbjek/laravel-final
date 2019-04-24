@@ -1,11 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <create-appointment></create-appointment>
+    <div class="container-fluid">
+            <div class="row" style="max-height:100vh;">
+                <div class="col-sm col-lg-2  col-xl-2 clear" >
+                    <sidebar-component></sidebar-component>
+                </div>
+                <div class=" col-sm-12 col-lg-10 clear">
+                    <create-appointment></create-appointment>
+                </div>
             </div>
         </div>
-    </div>
 @endsection
