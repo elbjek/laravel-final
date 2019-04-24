@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Pet;
+use App\Client;
 use App\Appointment;
 use Illuminate\Support\Facades\App;
 
@@ -24,13 +26,23 @@ class ApiAppointmentController extends Controller
 
     public function create()
     {
-        return view('create-appointment');
+        $user = \Auth::id();
+        $pets = Pet::pluck('name','id');
+        $clients = Client::pluck('client_name','id');
+        return  compact('user','pets','clients');
 
     }
 
     public function store(Request $request)
     {
-        return response()->json([$request->all()]);
+        Appointment::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'client_id' => $request->client_id,
+            'pet_id' => $request->pet_id,
+            'user_id' => \Auth::id()
+        ]);
+        return redirect('/appointments');
     }
 
     public function show(Appointment $appointment)

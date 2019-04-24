@@ -1,26 +1,38 @@
 <template>
-    <form >
+    <form @submit.prevent="formSubmit()" method="POST" action="/api/appointments">
         <div class="form-group">
             <label for="title">Title:</label>
-            <input type="text" class="form-control" name="title" v-model="title"/>
+            <input type="text" class="form-control" name="title" v-model="fields.title"/>
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <input type="text" class="form-control" name="description" v-model="description"/>
+            <input type="text" class="form-control" name="description" v-model="fields.description"/>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="pet_id">Pet id</label>
-            <input type="number" class="form-control" name="pet_id" v-model="pet_id"/>
+            <input type="number" class="form-control" name="pet_id" v-model="fields.pet_id"/>
+        </div> -->
+                <!-- <div class="form-group">
+            <label for="client_id">Client id</label>
+            <input type="number" class="form-control" name="client_id" v-model="fields.client_id"/>
+        </div> -->
+        <div class="form-group">
+            <label for="pet_id">Pet</label>
+            <select type="number" class="form-control" name="pet_id" v-model="fields.pet_id" >
+            <option v-for="(name,id) in pets" :key="id" :value="id" > {{name}}</option>
+            </select> 
         </div>
         <div class="form-group">
             <label for="client_id">Client id</label>
-            <input type="number" class="form-control" name="client_id" v-model="client_id"/>
+            <select type="number" class="form-control" name="client_id" v-model="fields.client_id">
+            <option v-for="(value,key) in clients" :key="key" :value="key"> {{value}}</option>
+            </select> 
         </div>
         <div class="form-group">
-            <label for="user_id">User Id</label>
-            <input type="hidden"  value="1" class="form-control" name="user_id" v-model="user_id"/>
+            <!-- <label for="user_id">User Id</label> -->
+            <input type="hidden"  class="form-control"  name="user_id" value="userid"/>
         </div>
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" class="btn btn-primary"><a href="/appointments">Add</a></button>
     </form>
 </template>
 
@@ -29,29 +41,48 @@
         name: "CreateAppointment",
         data: function() {
             return {
-                title:'',
-                description:'',
-                pet_id:'',
-                client_id:'',
-                user_id:''
+                pets:'',
+                clients:'',
+                userid:'',
+                fields:{},
+                errors:{}
             }
         },
+        mounted() {
+            console.log("i work");
+            this.fetchData();
+            // Echo.channel('notifications')
+            //     .listen("SongSavedEvent", (e) => {
+            //         this.fetchSongs();
+            //     });
+        },
         methods:{
-            createAppointment:function (e) {
-                e.preventDefault();
-                console.log(this.title)
-                axios.post('/api/appointments')
+            addUserId(){
+                console.log(this.fields)
+            },
+            fetchData:function () {
+                axios.get('/api/appointments/create')
                     .then(response => {
-                        this.appointments = response.data;
-                        console.log(this.appointments)
+                        this.userid = response.data.user;
+                        this.pets = response.data.pets;
+                        this.clients = response.data.clients;
+                        console.log(this.pets);
                     })
                     .catch((err) => {
                         console.log(err)
                     })
-
+            },
+            formSubmit() {
+                this.addUserId()
+                axios.post('/api/appointments/', this.fields)
+                .catch(error => {
+                    if (error.response.status === 422) {
+                    this.errors = error.response.data.errors || {};
+                    }
+                });
             }
         }
-    }
+}
 </script>
 
 <style scoped>

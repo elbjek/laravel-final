@@ -4,7 +4,7 @@
 
     {{--<sidenav-component></sidenav-component>--}}
     {{-- <create-appointment></create-appointment> --}}
-
+{{-- 
     <form method="post" action="{{ route('appointments.store') }}">
             {{ csrf_field() }}
             <div class="form-group">
@@ -32,9 +32,10 @@
                     </select>
                 </div>
             <div class="form-group">
-                {{-- <label for="user_id">User Id</label> --}}
+                <label for="user_id">User Id</label>
             <input type="hidden"  value="{{$user}}" class="form-control" name="user_id" />
             </div>
             <button type="submit" class="btn btn-primary">Add</button>
-        </form>
+        </form> --}}
+        <create-appointment></create-appointment>
 @endsection

@@ -1896,28 +1896,60 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CreateAppointment",
   data: function data() {
     return {
-      title: '',
-      description: '',
-      pet_id: '',
-      client_id: '',
-      user_id: ''
+      pets: '',
+      clients: '',
+      userid: '',
+      fields: {},
+      errors: {}
     };
   },
+  mounted: function mounted() {
+    console.log("i work");
+    this.fetchData(); // Echo.channel('notifications')
+    //     .listen("SongSavedEvent", (e) => {
+    //         this.fetchSongs();
+    //     });
+  },
   methods: {
-    createAppointment: function createAppointment(e) {
+    addUserId: function addUserId() {
+      console.log(this.fields);
+    },
+    fetchData: function fetchData() {
       var _this = this;
 
-      e.preventDefault();
-      console.log(this.title);
-      axios.post('/api/appointments').then(function (response) {
-        _this.appointments = response.data;
-        console.log(_this.appointments);
+      axios.get('/api/appointments/create').then(function (response) {
+        _this.userid = response.data.user;
+        _this.pets = response.data.pets;
+        _this.clients = response.data.clients;
+        console.log(_this.pets);
       })["catch"](function (err) {
         console.log(err);
+      });
+    },
+    formSubmit: function formSubmit() {
+      var _this2 = this;
+
+      this.addUserId();
+      axios.post('/api/appointments/', this.fields)["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this2.errors = error.response.data.errors || {};
+        }
       });
     }
   }
@@ -37593,145 +37625,185 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("form", [
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "title" } }, [_vm._v("Title:")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.title,
-            expression: "title"
-          }
-        ],
-        staticClass: "form-control",
-        attrs: { type: "text", name: "title" },
-        domProps: { value: _vm.title },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.title = $event.target.value
-          }
+  return _c(
+    "form",
+    {
+      attrs: { method: "POST", action: "/api/appointments" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.formSubmit()
         }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "description" } }, [_vm._v("Description")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.description,
-            expression: "description"
-          }
-        ],
-        staticClass: "form-control",
-        attrs: { type: "text", name: "description" },
-        domProps: { value: _vm.description },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      }
+    },
+    [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "title" } }, [_vm._v("Title:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.fields.title,
+              expression: "fields.title"
             }
-            _vm.description = $event.target.value
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "pet_id" } }, [_vm._v("Pet id")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.pet_id,
-            expression: "pet_id"
-          }
-        ],
-        staticClass: "form-control",
-        attrs: { type: "number", name: "pet_id" },
-        domProps: { value: _vm.pet_id },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", name: "title" },
+          domProps: { value: _vm.fields.title },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.fields, "title", $event.target.value)
             }
-            _vm.pet_id = $event.target.value
           }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "client_id" } }, [_vm._v("Client id")]),
+        })
+      ]),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.client_id,
-            expression: "client_id"
-          }
-        ],
-        staticClass: "form-control",
-        attrs: { type: "number", name: "client_id" },
-        domProps: { value: _vm.client_id },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "description" } }, [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.fields.description,
+              expression: "fields.description"
             }
-            _vm.client_id = $event.target.value
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", name: "description" },
+          domProps: { value: _vm.fields.description },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.fields, "description", $event.target.value)
+            }
           }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "user_id" } }, [_vm._v("User Id")]),
+        })
+      ]),
       _vm._v(" "),
-      _c("input", {
-        directives: [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "pet_id" } }, [_vm._v("Pet")]),
+        _vm._v(" "),
+        _c(
+          "select",
           {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.user_id,
-            expression: "user_id"
-          }
-        ],
-        staticClass: "form-control",
-        attrs: { type: "hidden", value: "1", name: "user_id" },
-        domProps: { value: _vm.user_id },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.fields.pet_id,
+                expression: "fields.pet_id"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "number", name: "pet_id" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.fields,
+                  "pet_id",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
             }
-            _vm.user_id = $event.target.value
-          }
-        }
+          },
+          _vm._l(_vm.pets, function(name, id) {
+            return _c("option", { key: id, domProps: { value: id } }, [
+              _vm._v(" " + _vm._s(name))
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "client_id" } }, [_vm._v("Client id")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.fields.client_id,
+                expression: "fields.client_id"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "number", name: "client_id" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.fields,
+                  "client_id",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          _vm._l(_vm.clients, function(value, key) {
+            return _c("option", { key: key, domProps: { value: key } }, [
+              _vm._v(" " + _vm._s(value))
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1)
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "hidden", name: "user_id", value: "userid" }
       })
-    ]),
-    _vm._v(" "),
-    _c(
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
       "button",
       { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-      [_vm._v("Add")]
+      [_c("a", { attrs: { href: "/appointments" } }, [_vm._v("Add")])]
     )
-  ])
-}
-var staticRenderFns = []
+  }
+]
 render._withStripped = true
 
 
