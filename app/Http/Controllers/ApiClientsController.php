@@ -10,7 +10,6 @@ class ApiClientsController extends Controller
 {
     public function index() 
     {
-
         $user = \Auth::id();
         $clients = Client::join ('pets', 'pets.id', '=', 'clients.pet_id')
         ->select('clients.*','name')
@@ -19,7 +18,6 @@ class ApiClientsController extends Controller
         ->get();
         return response()->json($clients);
     }
-
 
     public function show() 
     {

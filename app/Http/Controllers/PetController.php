@@ -40,7 +40,11 @@ class PetController extends Controller
 
     public function edit(Pet $pet)
     {
-        $clients = Client::pluck('first_name', 'id');
+        $user = \Auth::id();
+        $selected_id = $pet->id;
+        $pet = Pet::where('pets.user_id', $user)
+        ->where('pets.id', $selected_id)
+        ->get();
         return view ('edit-pet', compact('pet', 'clients'));
     }
 

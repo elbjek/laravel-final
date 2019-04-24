@@ -47,7 +47,12 @@ class User extends Authenticatable
 
     public function clients() {
 
-        return $this->belongsTO(\App\Client::class);
+        return $this->belongsTo(\App\Client::class);
+
+    }
+    public function pets() {
+
+        return $this->belongsTo(\App\User::class);
 
     }
 }

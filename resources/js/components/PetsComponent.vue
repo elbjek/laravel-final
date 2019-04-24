@@ -7,7 +7,9 @@
             <h5 class="card-title">Pet name : {{pet.name}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Weight : {{pet.weight}}</h6>
             <p class="card-text">Created: {{pet.created_at}}</p>
-            <a :href="'/pets/' + pet.id" class="card-link">See more</a>
+            <a :href="'/pets/' + pet.id" role="button" class="btn btn-secondary">View</a>
+            <a :href="'/pets/' + pet.id + '/edit'" role="button" class="btn btn-secondary">Edit</a>
+            <button class="btn btn-danger" @click.prevent="deleteItem(pet.id)">Delete</button>
         </div>
     </div>
 </template>
@@ -39,6 +41,12 @@
                     .catch((err) => {
                         console.log(err)
                     })
+            },
+            deleteItem($id){
+                axios.delete('/api/clients/'+$id)
+                .then(response=>{
+                    this.pets.splice(this.pets.indexOf(this.pets.id), 1)
+                })
             }
         }
     }

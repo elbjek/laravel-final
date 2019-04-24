@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<single-client></single-client>
+<div class="container">
+        <div class="row">
+            <div class="col-sm">
+                    <single-client></single-client>
+            </div>
+        </div>
+    </div>
+
 @endsection

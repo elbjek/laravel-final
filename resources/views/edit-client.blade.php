@@ -4,7 +4,7 @@
 <div class="container">
         <div class="row">
             <div class="col-sm">
-                    <edit-client></edit-cl>
+                    <edit-client></edit-client>
             </div>
         </div>
     </div>
