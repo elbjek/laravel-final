@@ -13,12 +13,17 @@
 // Shared
 
 @import './shared/sidebar.scss';
-
+@import './shared/appointments.scss';
 html, body {
     background-color: #fff;
     color: #636b6f;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 200;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
     height: 100vh;
     margin: 0;
+}
+
+.clear{
+    margin:0;
+    padding:0;
 }

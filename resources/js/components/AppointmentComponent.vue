@@ -1,17 +1,19 @@
 <template>
-    <div>
-  <!-- v-for="(value,key,index) in clients" :key="`${index}-${client.id}`" :value="key"> {{client}} -->
-        <h1>All My Appointments</h1>
-        <br>
-        <a class="btn btn-primary" href="/appointments/create">Add new</a>
-            <div class="card-body" v-for="(appointment,key) in appointments" :key="key">               
-                <h5 class="card-title">Title : {{appointment.title}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Pet name : {{appointment.name}}</h6>
-                <p class="card-text">Description: {{appointment.description}}</p>
-                <p class="card-text">Time: {{appointment.created_at}}</p>
-                <a :href="'/appointments/' + appointment.id" class="card-link">See more</a>
+    <div class="appointments">
+            <div class="header">
+                <h1>All My Appointments</h1>
+                <a class="btn btn-add" href="/appointments/create">Add new</a>
+            </div>
+           <div class="row">
+                <div class="card-body" v-for="(appointment,key) in appointments" :key="key">               
+                    <h3 class="card-title">Title : <span>{{appointment.title}}</span> </h3>
+                    <h6 class="card-subtitle mb-2 text-muted">Pet name : <span>{{appointment.name}}</span></h6>
+                    <p class="card-text">Description: <span>{{appointment.description}}</span></p>
+                    <p class="card-text">Time: <span>{{appointment.created_at}}</span></p>
+                    <a :href="'/appointments/' + appointment.id" class="card-link">See more</a>
                 <button class="btn btn-danger" @click.prevent="deleteItem(appointment.id)">Delete</button>
-        </div>
+            </div>
+           </div>
     </div>
 </template>
 <script>

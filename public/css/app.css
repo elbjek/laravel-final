@@ -10682,13 +10682,100 @@ a.text-dark:focus {
   text-transform: uppercase;
 }
 
+.sidebar {
+  background-color: #ffffff;
+  height: 100%;
+  border-top: 2px solid #f4f4f4;
+  border-right: 1px solid rgba(150, 150, 150, 0.45);
+}
+
+.sidebar ul {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar ul li {
+  list-style-type: none;
+  background-color: #ffffff;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.sidebar ul li:hover {
+  background-color: #f4f4f4;
+}
+
+.sidebar ul li:hover a {
+  opacity: 1;
+}
+
+.sidebar ul li a {
+  padding: 20px 0px;
+  color: #3d3d3d;
+  font-weight: bold;
+}
+
+.sidebar ul li a i {
+  opacity: 0.7;
+  color: #f6993f;
+}
+
+.sidebar ul li a span {
+  padding-left: 15px;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: none;
+}
+
+.appointments {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-top: 2px solid #f4f4f4;
+}
+
+.appointments .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.appointments .header h1 {
+  font-weight: 500;
+}
+
+.appointments .header .btn-add {
+  background-color: #f6993f;
+  color: white;
+  text-align: center;
+  align-self: center;
+  border-radius: 30px;
+  padding: 8px 20px;
+}
+
+.appointments .card-body {
+  background-color: white;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 3px 7px 0px rgba(150, 150, 150, 0.45);
+}
+
+.appointments .card-body h3 span {
+  text-transform: capitalize;
+}
+
 html,
 body {
   background-color: #fff;
   color: #636b6f;
-  font-family: "Nunito", sans-serif;
-  font-weight: 200;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
   height: 100vh;
   margin: 0;
+}
+
+.clear {
+  margin: 0;
+  padding: 0;
 }
 

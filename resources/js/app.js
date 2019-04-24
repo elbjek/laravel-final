@@ -21,7 +21,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('welcome-component', require('./components/WelcomeComponent.vue').default);
-Vue.component('sidenav-component', require('./components/SidenavComponent.vue').default);
+Vue.component('sidebar-component', require('./layout-partials/SidebarComponent.vue').default);
 
 Vue.component('appointment-component', require('./components/AppointmentComponent.vue').default);
 Vue.component('single-appointment', require('./components/SingleAppointment.vue').default);
