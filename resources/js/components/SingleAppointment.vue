@@ -1,7 +1,7 @@
 <template>
 <div>
     <h2>Single Appointment Here</h2>
-    <div class="card" style="width: 18rem;">
+    <div class="card">
         <div class="card-body">
             <h5 class="card-title">Title:{{appointment.title}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Description:{{appointment.description}}</h6>

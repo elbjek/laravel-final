@@ -10,7 +10,7 @@
                 <p class="card-text">Description: {{appointment.description}}</p>
                 <p class="card-text">Time: {{appointment.created_at}}</p>
                 <a :href="'/appointments/' + appointment.id" class="card-link">See more</a>
-                <a href="#" class="card-link">Another link</a>
+                <button class="btn btn-danger" @click.prevent="deleteItem(appointment.id)">Delete</button>
         </div>
     </div>
 </template>
@@ -41,6 +41,12 @@
                         console.log(err)
                     })
             },
+            deleteItem($id){
+                axios.delete('/api/appointments/'+$id)
+                .then(response=>{
+                    this.appointments.splice(this.appointments.indexOf(this.appointments.id), 1)
+                })
+            }
         }
     }
 </script>

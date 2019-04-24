@@ -82,7 +82,14 @@ class ApiAppointmentController extends Controller
 
             $id = $appointment->id;
             $appointment->update($request->all());
-            // return redirect('/appointments/'.$id);
+            return redirect('/appointments/'.$id);
+        }
+
+        public function destroy(Appointment $appointment)
+        {
+            // $appointment = Appointments::find($id);
+            $appointment->delete();
+            
         }
         
     }

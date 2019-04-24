@@ -1,5 +1,7 @@
 <template>
-    <form @submit.prevent="formSubmit()" method="POST" action="/api/appointments">
+<div>
+    <h3>Edit</h3>
+        <form @submit.prevent="formSubmit()" method="POST" action="/api/appointments">
         <div class="form-group">
             <label for="title">Title:</label>
             <input type="text" class="form-control" :placeholder="appointment.title" name="title" v-model="fields.title"/>
@@ -10,7 +12,7 @@
         </div>
         <div class="form-group">
             <label for="pet_id">Pet</label>
-            <select type="number" class="form-control" name="pet_id" v-model="fields.pet_id" >
+            <select  type="number" class="form-control" name="pet_id" v-model="fields.pet_id" >
             <option 
             v-for="(value, key) in pets" :value="key" :key="key"> 
                 {{value}}
@@ -23,12 +25,14 @@
             <option v-for="(value,key) in clients" :key="key" :value="key"> {{value}}</option>
             </select> 
         </div>
+        
         <div class="form-group">
-            <!-- <label for="user_id">User Id</label> -->
             <input type="hidden"  class="form-control"  name="user_id" value="userid"/>
         </div>
-        <button type="submit" class="btn btn-primary">Edit</button>
+        <button type="submit" class="btn btn-secondary">Edit</button>
+         <a class="btn btn-primary" href="/appointments" role="button">Back</a> 
     </form>
+</div>
 </template>
 
 <script>
